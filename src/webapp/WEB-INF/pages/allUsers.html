@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        h2 {
+            font-size: 20px;
+            color: #666;
+        }
+        h3 {
+            font-size: 18px;
+            color: #888;
+        }
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+        .user-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .user-card h3 {
+            margin-top: 0;
+        }
+        .create-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #db3434;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .create-link:hover {
+            background-color: #2980b9;
+        }
+        .user-card h4 {
+            margin-top: 0;
+        }
+        .create-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #45db34;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .create-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div th:each="user : ${users}" class="user-card">
+        <h1 th:text="${user.toString()}"></h1>
+        <h4><a th:href="@{'/users/update?id=' + ${user.id}}">Update this user</a></h4>
+        <h3><a th:href="@{'/users/delete?id=' + ${user.id}}">Delete this user</a></h3>
+    </div>
+    <h2><a th:href="@{/users/new}" class="create-link">Create new user</a></h2>
+</div>
+</body>
+</html>
