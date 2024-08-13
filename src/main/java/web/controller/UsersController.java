@@ -3,8 +3,12 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import web.Service.UsersService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import web.service.UsersService;
 import web.entity.Users;
 
 @Controller
@@ -19,13 +23,13 @@ public class UsersController {
     }
 
 
-    @GetMapping(value = "/allUsers")
+    @GetMapping("/allUsers")
     public String usersPage(Model model) {
         model.addAttribute("users", usersService.readingAllUsers());
         return "allUsers";
     }
 
-    @GetMapping(value = "/new")
+    @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("user", new Users());
         return "newUser";
@@ -39,8 +43,7 @@ public class UsersController {
 
 
     @GetMapping("/update")
-    public String updateForm(ModelMap model,
-                             @RequestParam("id") long id) {
+    public String updateForm(ModelMap model, @RequestParam("id") long id) {
         model.addAttribute("user", usersService.readUser(id));
         return "update";
     }
